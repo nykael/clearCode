@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "nykael <nykaelccardial@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.10",
@@ -17,6 +20,7 @@
     "git-commit-msg-linter": "^5.0.8",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.5.0",
     "ts-jest": "^29.2.6",
     "typescript": "^5.8.2"
