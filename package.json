@@ -1,11 +1,15 @@
 {
-  "name": "clearCode",
+  "name": "clear-code",
   "version": "1.0.0",
   "main": "index.js",
   "author": "nykael <nykaelccardial@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test -- --watch",
+    "test:staged": "yarn test -- --findRelatedTet",
+    "test:ci": "yarn test -- --coverage"
+
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
