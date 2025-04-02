@@ -5,6 +5,7 @@ import { InvalidCredentialsError } from "@/domain/erros/invalid-credentials-erro
 import { mockAuthentication } from "@/domain/test/mock-authentication";
 
 import { faker } from '@faker-js/faker';
+import { UnexpectedError } from "@/domain/erros/unexpected-error";
 
 type SutTypes =  {
     sut: RemoteAuthentucation;
@@ -33,13 +34,39 @@ describe('RemoteAuthentucation', () => {
         expect(httpPostClientSpy.body).toEqual(authencticationParams)
     })
 
-    test('Should throwcinvalidCredentialsError if HttpPostClient returns 401', async () => {
+    test('Should throw InvalidCredentialsError if HttpPostClient returns 401', async () => {
         const {httpPostClientSpy, sut} = makeSut()
         httpPostClientSpy.response = {
             statusCode: HttpStatusode.unathorized
         }
         const promise =  sut.auth(mockAuthentication())
         expect(promise).rejects.toThrow(new InvalidCredentialsError())
+    })
+
+    test('Should throw UnexpectedError if HttpPostClient returns 400', async () => {
+        const {httpPostClientSpy, sut} = makeSut()
+        httpPostClientSpy.response = {
+            statusCode: HttpStatusode.badRequest
+        }
+        const promise =  sut.auth(mockAuthentication())
+        expect(promise).rejects.toThrow(new UnexpectedError())
+    })
+    test('Should throw UnexpectedError if HttpPostClient returns 404', async () => {
+        const {httpPostClientSpy, sut} = makeSut()
+        httpPostClientSpy.response = {
+            statusCode: HttpStatusode.notFound
+        }
+        const promise =  sut.auth(mockAuthentication())
+        expect(promise).rejects.toThrow(new UnexpectedError())
+    })
+
+    test('Should throw UnexpectedError if HttpPostClient returns 500', async () => {
+        const {httpPostClientSpy, sut} = makeSut()
+        httpPostClientSpy.response = {
+            statusCode: HttpStatusode.serverError
+        }
+        const promise =  sut.auth(mockAuthentication())
+        expect(promise).rejects.toThrow(new UnexpectedError())
     })
 })
 
