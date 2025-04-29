@@ -29,7 +29,10 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.5.0",
     "ts-jest": "^29.2.6",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
